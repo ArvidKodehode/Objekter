@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objekter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JS Objekter</h1>
+
+    <h2>Oppgave 1: Lag et objekt</h2>
+    <p>Her lager vi et objekt som beskriver meg</p>
+    <pre>
+const person = {
+    navn: "Ola Dunk",
+    alder: 50,
+    sivilstatus: "Ugift",
+    interesser: ["Sofa", "Video", "Tek"],
+    kroppsdeler: ["Hode", "Armer", "Bein"]
+};
+    </pre>
+
+    <h2>Oppgave 2: Legg til metoder</h2>
+    <p>Metoder beskriver hva personen kan gjøre, for eksempel hilse, legge til en interesse, eller vise informasjon om seg selv.</p>
+    <pre>
+const person = {
+    // Andre egenskaper...
+    hils() {
+        return `Hei! Jeg heter ${this.navn}, er ${this.alder} år gammel og ${this.sivilstatus}.`;
+    },
+    leggTilInteresse(nyInteresse) {
+        this.interesser.push(nyInteresse);
+        return `Interessen "${nyInteresse}" er lagt til.`;
+    },
+    visInfo() {
+        return \`
+            Navn: ${this.navn}<br>
+            Alder: ${this.alder}<br>
+            Sivilstatus: ${this.sivilstatus}<br>
+            Interesser: ${this.interesser.join(", ")}<br>
+            Kroppsdeler: ${this.kroppsdeler.join(", ")}
+        \`;
+    }
+};
+    </pre>
+
+    <h2>Oppgave 3: Lag et program</h2>
+    <p>Programmet lar brukeren velge en handling som objektet skal utføre.</p>
+    <pre>
+function runMethod() {
+    const inputMethod = document.getElementById("inputMethod").value;
+    const outputDiv = document.getElementById("output");
+    let result = "";
+
+    if (inputMethod === "greet") {
+        result = person.hils();
+    } else if (inputMethod === "addInterest") {
+        const nyInteresse = prompt("Skriv inn en ny interesse:");
+        if (nyInteresse) {
+            result = person.leggTilInteresse(nyInteresse);
+        } else {
+            result = "Ingen interesse ble lagt til.";
+        }
+    } else if (inputMethod === "showInfo") {
+        result = person.visInfo();
+    }
+
+    outputDiv.innerHTML = result;
+}
+    </pre>
+
+    <h2>Prøv programmet</h2>
+    <label for="inputMethod">Velg en handling:</label>
+    <select id="inputMethod">
+        <option value="greet">Hils</option>
+        <option value="addInterest">Legg til interesse</option>
+        <option value="showInfo">Vis informasjon</option>
+    </select>
+    <button onclick="runMethod()">Utfør</button>
+
+    <div class="output" id="output"></div>
+
+    <script>
+        // Oppgave 1: Lag et objekt
+        const person = {
+            navn: "Ola Dunk",
+            alder: 50,
+            sivilstatus: "Ugift",
+            interesser: ["Sofa", "Video", "Tek"],
+            kroppsdeler: ["Hode", "Armer", "Bein"],
+
+            // Oppgave 2: Metoder
+            hils() {
+                return `Hei! Jeg heter ${this.navn}, er ${this.alder} år gammel og ${this.sivilstatus}.`;
+            },
+            leggTilInteresse(nyInteresse) {
+                this.interesser.push(nyInteresse);
+                return `Interessen "${nyInteresse}" er lagt til.`;
+            },
+            visInfo() {
+                return `
+                    Navn: ${this.navn}<br>
+                    Alder: ${this.alder}<br>
+                    Sivilstatus: ${this.sivilstatus}<br>
+                    Interesser: ${this.interesser.join(", ")}<br>
+                    Kroppsdeler: ${this.kroppsdeler.join(", ")}
+                `;
+            }
+        };
+
+        // Oppgave 3: Programmet
+        function runMethod() {
+            const inputMethod = document.getElementById("inputMethod").value;
+            const outputDiv = document.getElementById("output");
+            let result = "";
+
+            if (inputMethod === "greet") {
+                result = person.hils();
+            } else if (inputMethod === "addInterest") {
+                const nyInteresse = prompt("Skriv inn en ny interesse:");
+                if (nyInteresse) {
+                    result = person.leggTilInteresse(nyInteresse);
+                } else {
+                    result = "Ingen interesse ble lagt til.";
+                }
+            } else if (inputMethod === "showInfo") {
+                result = person.visInfo();
+            }
+
+            outputDiv.innerHTML = result;
+        }
+    </script>
+</body>
+</html>
